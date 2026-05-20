@@ -1,0 +1,36 @@
+JWT_SECRET=Ankit6623
+http://localhost:5000/api/auth/register
+http://localhost:5000/api/auth/login
+http://localhost:5000/api/students
+http://localhost:5000/api/fees
+http://localhost:5000/api/fees/pay/6a0734baddac887ca9b7c553
+http://localhost:5000/api/fees/receipt/6a0734baddac887ca9b7c553
+
+{
+  "name": "Ankit Kumar",
+  "email": "ankit@gmail.com",
+  "password": "123456",
+  "role": "admin"
+}
+register
+{
+  "email": "ankit@gmail.com",
+  "password": "123456"
+} login
+{
+  "fullName": "Ankit Kumar",
+  "rollNumber": "CS101",
+  "course": "B.Tech CSE",
+  "year": 3,
+  "email": "ankit@gmail.com",
+  "phone": "9876543210"
+} create stud detail
+{
+  "studentId": "6a073359ddac887ca9b7c552",
+  "totalFees": 50000,
+  "course": "B.Tech CSE",
+  "semester": 6
+} stud fees detail
+{
+  "amount": 10000
+} update fee stud
