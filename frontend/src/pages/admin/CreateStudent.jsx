@@ -53,7 +53,7 @@ function CreateStudent() {
         form,
         {
           headers: {
-            authorization: token
+           Authorization: `Bearer ${token}`
           }
         }
       );

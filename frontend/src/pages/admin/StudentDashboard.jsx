@@ -16,7 +16,7 @@ function StudentDashboard() {
   // FETCH STUDENTS
   const fetchStudents = async () => {
 
-    try {
+    try { 
 
       const token = localStorage.getItem("token");
 

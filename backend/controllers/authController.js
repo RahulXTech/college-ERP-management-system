@@ -39,7 +39,17 @@ exports.login = async(req, res) => {
             process.env.JWT_SECRET,
             { expiresIn : "7d" }
         );
-
+          // Save Token in Cookie
+        res
+            .status(200)
+            .cookie("token", token, {
+                httpOnly: true,
+                secure: false, // true in production with HTTPS
+                sameSite: "strict",
+                expires: new Date(
+                    Date.now() + 7 * 24 * 60 * 60 * 1000
+                )
+            })
         res.status(200).json({
             message : "Login Successful",
             token,

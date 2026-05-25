@@ -1,7 +1,45 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { ChevronDown } from "lucide-react";
 
 function FeePayment() {
- 
+
+  const [student, setStudent] = useState({});
+
+  useEffect(() => {
+
+    const fetchStudent = async () => {
+
+      try {
+
+        const token = localStorage.getItem("token");
+        // const studentId = "6a0d78b4d56fff70673a26a8";
+        const studentId = localStorage.getItem("studentId");
+
+        const { data } = await axios.get(
+          `http://localhost:5000/api/student/${studentId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
+        setStudent(data.student);
+        console.log(data)
+
+      } catch (err) {
+
+        console.log(err);
+
+      }
+
+    };
+
+    fetchStudent();
+
+  }, []);
+console.log(student)
 return (
   <div className="w-full h-screen bg-[#efefef] overflow-hidden">
 
@@ -17,7 +55,7 @@ return (
             alt="logo"
             className="w-5"
           />
-        </div>
+        </div> 
 
         <h1 className="text-white text-[14px] md:text-[18px] font-normal">
           MILLENNIUM INSTITUTE OF TECHNOLOGY
@@ -28,7 +66,7 @@ return (
       {/* RIGHT */}
       <div className="flex items-center gap-4 text-white text-[13px]">
 
-        <span>RAHUL KUMAR</span>
+        <span>{student?.name}</span>
 
         <button className="flex items-center gap-1">
           Account
@@ -119,16 +157,17 @@ return (
                   ) : (
                     <input
                       type="text"
-                      defaultValue={
+                      value={
                         index === 2
-                          ? "RAHUL KUMAR"
+                          ? student?.name || ""
                           : index === 3
-                          ? "SHARMA"
+                          ? student?.fatherName || ""
                           : index === 4
-                          ? "0540CS221042"
-                          : ""
+                          ? student?.enrollment || ""
+                          : student?._id || ""
                       }
                       className="border border-gray-500 h-[28px] px-2 text-[12px]"
+                      readOnly
                     />
                   )}
                 </div>
@@ -162,18 +201,19 @@ return (
                   ) : (
                     <input
                       type="text"
-                      defaultValue={
+                      value={
                         index === 2
-                          ? "2022-2023"
+                          ? student?.batch || ""
                           : index === 3
-                          ? "B.TECH"
+                          ? student?.course || ""
                           : index === 4
-                          ? "CSE"
+                          ? student?.branch || ""
                           : index === 5
-                          ? "VIII SEM"
+                          ? student?.semester || ""
                           : ""
                       }
                       className="border border-gray-500 h-[28px] px-2 text-[12px]"
+                      readOnly
                     />
                   )}
 
@@ -195,8 +235,9 @@ return (
 
               <input
                 type="text"
-                defaultValue="24190"
+                value={student?.scholarNumber || ""}
                 className="border border-gray-500 h-[28px] w-[90px] px-2 text-[12px]"
+                readOnly
               />
 
             </div>
@@ -264,6 +305,7 @@ return (
 
       <input
         type="text"
+        value={student?.totalFees}
         className="border border-gray-400 h-[32px] w-full sm:w-[140px] px-2 text-[13px] outline-none"
       />
 

@@ -47,6 +47,7 @@ function Login() {
 
       // SAVE TOKEN
       localStorage.setItem("token", data.token);
+      localStorage.setItem("studentId", data.user._id);
 
       // SAVE USER
       localStorage.setItem("user", JSON.stringify(data.user));

@@ -6,7 +6,8 @@ const authMiddleware = require("../middleware/authMiddleware");
 const {
     createStudent,
     getStudents,
-    pendingPayments
+    pendingPayments,
+    getSingleStudent
 } = require("../controllers/studentController");
 
 
@@ -26,6 +27,12 @@ router.get(
     "/pending",
     authMiddleware,
     pendingPayments
+);
+
+router.get(
+    "/:id",
+    authMiddleware,
+    getSingleStudent
 );
 
 module.exports = router;
