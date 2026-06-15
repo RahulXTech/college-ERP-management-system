@@ -86,7 +86,7 @@ function Sidebar() {
               <li
                 className={`h-[44px] px-4 rounded-xl flex items-center gap-3 transition-all duration-200 cursor-pointer
                 ${
-                  location.pathname === "/admin/students"
+                  location.pathname === "/admin/view-student-details"
                     ? activeMenu
                     : normalMenu
                 }`}

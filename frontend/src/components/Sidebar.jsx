@@ -53,7 +53,7 @@ function Sidebar() {
       {/* Login Button */}
       <div className="px-5 pb-6">
         <Link to="/login">
-        <button className="cursor-pointer w-full bg-yellow-400 text-black py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-all duration-300">
+        <button className="w-full bg-yellow-400 text-black py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-all duration-300">
           Student Login
         </button>
         </Link>
@@ -62,8 +62,3 @@ function Sidebar() {
   );
 }
 export default Sidebar;
-
-
-
-
-

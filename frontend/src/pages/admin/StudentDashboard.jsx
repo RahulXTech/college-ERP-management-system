@@ -21,10 +21,10 @@ function StudentDashboard() {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        "http://localhost:5000/api/student/all",
+        `${import.meta.env.VITE_API_URL}/api/student/all`,
         {
           headers: {
-            authorization: token
+            Authorization: `Bearer ${token}`
           }
         }
       );

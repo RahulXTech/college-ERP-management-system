@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ChevronDown } from "lucide-react";
+import logo from "../assets/logo.jpg";
 
 function FeePayment() {
 
@@ -17,7 +18,7 @@ function FeePayment() {
         const studentId = localStorage.getItem("studentId");
 
         const { data } = await axios.get(
-          `http://localhost:5000/api/student/${studentId}`,
+          `${import.meta.env.VITE_API_URL}/api/student/${studentId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -26,11 +27,10 @@ function FeePayment() {
         );
 
         setStudent(data.student);
-        console.log(data)
 
       } catch (err) {
 
-        console.log(err);
+        console.error(err);
 
       }
 
@@ -39,8 +39,8 @@ function FeePayment() {
     fetchStudent();
 
   }, []);
-console.log(student)
-return (
+
+  return (
   <div className="w-full h-screen bg-[#efefef] overflow-hidden">
 
     {/* HEADER */}
@@ -51,11 +51,11 @@ return (
 
         <div className="w-8 h-8 rounded-full bg-white overflow-hidden flex items-center justify-center">
           <img
-            src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
+            src={logo}
             alt="logo"
-            className="w-5"
+            className="w-full h-full object-cover"
           />
-        </div> 
+        </div>
 
         <h1 className="text-white text-[14px] md:text-[18px] font-normal">
           MILLENNIUM INSTITUTE OF TECHNOLOGY

@@ -1,15 +1,12 @@
 import {
   createBrowserRouter,
-  RouterProvider
+  RouterProvider,
+  Navigate,
 } from "react-router-dom";
-
-import Sidebar from "./components/Sidebar";
-import MainPage from "./components/MainPage";
 
 import FeePayment from "./pages/FeePayment";
 import Login from "./pages/Login";
 import LeftRightPage from "./pages/LeftRightPage";
-
 
 // ADMIN PAGES
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -17,6 +14,14 @@ import DashboardHome from "./pages/admin/DashboardHome";
 import CreateStudent from "./pages/admin/CreateStudent";
 import StudentDashboard from "./pages/admin/StudentDashboard";
 import Payments from "./pages/admin/Payments";
+import PendingFees from "./pages/admin/PendingFees";
+import Settings from "./pages/admin/Settings";
+
+function ProtectedRoute({ children }) {
+  const token = localStorage.getItem("token");
+  if (!token) return <Navigate to="/login" replace />;
+  return children;
+}
 
 
 
@@ -37,13 +42,13 @@ const router = createBrowserRouter([
   // STUDENT DASHBOARD
   {
     path: "/student/dashboard",
-    element: <FeePayment />
+    element: <ProtectedRoute><FeePayment /></ProtectedRoute>
   },
 
   // ADMIN DASHBOARD
   {
     path: "/admin",
-    element: <AdminLayout />,
+    element: <ProtectedRoute><AdminLayout /></ProtectedRoute>,
 
     children: [
 
@@ -59,15 +64,28 @@ const router = createBrowserRouter([
         element: <CreateStudent />
       },
 
-      // DISPLY STUDENT DETAILS
+      // STUDENT DETAILS
       {
-        path : "view-student-details",
-        element : <StudentDashboard/>
+        path: "view-student-details",
+        element: <StudentDashboard />
       },
-      // DISPLY STUDENT DETAILS
+
+      // PAYMENTS
       {
-        path : "payments",
-        element : <Payments/>
+        path: "payments",
+        element: <Payments />
+      },
+
+      // PENDING FEES
+      {
+        path: "pending-fees",
+        element: <PendingFees />
+      },
+
+      // SETTINGS
+      {
+        path: "settings",
+        element: <Settings />
       }
 
     ]

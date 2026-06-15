@@ -22,10 +22,10 @@ function Payments() {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        "http://localhost:5000/api/student/pending",
+        `${import.meta.env.VITE_API_URL}/api/student/pending`,
         {
           headers: {
-            authorization: token
+            Authorization: `Bearer ${token}`
           }
         }
       );
